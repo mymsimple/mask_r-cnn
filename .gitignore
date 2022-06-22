@@ -1,0 +1,15 @@
+.DS_Store
+.idea/
+/models/
+models
+/data/
+data
+logs/
+nohup.out
+test/result_test.py
+__pycache__/mask_test.cpython-36.pyc
+__pycache__/mask_train.cpython-36.pyc
+m_rcnn/__pycache__/parallel_model.cpython-36.pyc
+utils/__pycache__/convert_model.cpython-36.pyc
+utils/__pycache__/visualise_mask.cpython-36.pyc
+utils/__pycache__/visualise_mask_copy.cpython-36.pyc
