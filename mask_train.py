@@ -259,7 +259,6 @@ class MaskTrain(object):
         image_ids = np.copy(data.image_ids_list)
         print("data:", data)
         print("data.image_ids_list:", data.image_ids_list)
-        print("111:", data[0].image_ids_list)
         print("image_ids:", image_ids)
 
         error_count = 0
