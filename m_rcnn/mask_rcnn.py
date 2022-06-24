@@ -100,8 +100,17 @@ class MaskRCNN(object):
             input_gt_boxes = kl.Input(shape=[None, 4], name="input_gt_boxes", dtype=tf.float32)
 
             # Normalize coordinates
+            # todo 报错：TypeError: Could not build a TypeSpec for <KerasTensor: shape=(None, None, 4) dtype=float32 (created by layer 'tf.math.truediv')> with type KerasTensor
+            # 查了下原因，可能是tf和keras版本太高，但是我电脑是Mac M1安装tf必须是2.0以上，花了很长时间找解决方案
             gt_boxes = kl.Lambda(lambda x: self.bbox_util.norm_boxes_graph(x, k.shape(input_image)[1:3]))(
                 input_gt_boxes)
+
+            # from keras.layers import Layer
+            # import keras
+            # class MapLayer(Layer):
+            #     def call(self, input):
+            #         return kl.Lambda(lambda x: bbox_util.norm_boxes_graph(x, k.shape(input_image)[1:3]))()
+            # gt_boxes = MapLayer()(input_gt_boxes)
 
             # 3. GT Masks (zero padded)
             # [batch, height, width, MAX_GT_INSTANCES]

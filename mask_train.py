@@ -169,6 +169,8 @@ class MaskTrain(object):
         # Work-around for Windows: Keras fails on Windows when using
         # multiprocessing workers. See discussion here:
         # https://github.com/matterport/Mask_RCNN/issues/13#issuecomment-353124009
+
+        # todo!!!
         if os.name is 'nt':
             workers = 0
             pass
@@ -255,6 +257,10 @@ class MaskTrain(object):
         batch_index = 0
         image_index = -1
         image_ids = np.copy(data.image_ids_list)
+        print("data:", data)
+        print("data.image_ids_list:", data.image_ids_list)
+        print("111:", data[0].image_ids_list)
+        print("image_ids:", image_ids)
 
         error_count = 0
         no_augmentation_sources = no_augmentation_sources or []
