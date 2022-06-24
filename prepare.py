@@ -322,7 +322,7 @@ if __name__ == "__main__":
     start_time = datetime.now()
     print("开始时间: {}".format(start_time))
     # TODO 坐标拆分
-    data_path = "data/summary/labelme_split"
+    data_path = "data/labelme"
     demo = Prepare(data_path, data_path)
     demo.do_data_2_coco()
 
