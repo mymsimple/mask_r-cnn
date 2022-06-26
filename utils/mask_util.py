@@ -57,7 +57,8 @@ class MaskUtil(object):
         :param width: image info of width
         :return: binary mask (numpy 2D array)
         """
-        segment = annotation['segmentation']
+        # todo
+        segment = np.array(annotation['segmentation'])
         if isinstance(segment, list):
             # polygon -- a single object might consist of multiple parts
             # we merge all parts into one mask rle code
