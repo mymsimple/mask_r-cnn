@@ -28,7 +28,7 @@ from keras.callbacks import TensorBoard,EarlyStopping,ModelCheckpoint
 #from utils.debug_callback import DebugCallback
 from keras.models import load_model
 
-#os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 logger = logging.getLogger("Mask-Train")
 
 class MaskTrain(object):

@@ -5,12 +5,12 @@ export CUDA_VISIBLE_DEVICES=1
 
 log_dir="logs"
 
-#GPU=-1
-#
-#if [ "$1" != "" ]; then
-#    echo "选择GPU$1"
-#    GPU=$1
-#fi
+GPU=1
+
+if [ "$1" != "" ]; then
+    echo "选择GPU$1"
+    GPU=$1
+fi
 
 if [ ! -d "$log_dir" ]; then
         mkdir $log_dir
