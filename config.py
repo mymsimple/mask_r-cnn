@@ -35,8 +35,8 @@ __C.COMMON.FILE_EXISTS_FLAG = True
 
 # 数据划分比例
 __C.COMMON.TEST_PERCENT = 0.8
-__C.COMMON.VAL_PERCENT = 0.2
-__C.COMMON.TEST_PERCENT = 0
+__C.COMMON.VAL_PERCENT = 0.1
+__C.COMMON.TEST_PERCENT = 0.1
 
 # 数据来源
 __C.COMMON.DATA_SOURCE = "our_data"
@@ -226,11 +226,11 @@ __C.TRAIN.LEARNING_MOMENTUM = 0.9
 __C.TRAIN.GRADIENT_CLIP_NORM = 5.0
 
 # n_epoch for rough train
-__C.TRAIN.FIRST_STAGE_N_EPOCH = 4#32
+__C.TRAIN.FIRST_STAGE_N_EPOCH = 32
 # n_epoch for convergence loss
-__C.TRAIN.MIDDLE_STAGE_N_EPOCH = 12#128
+__C.TRAIN.MIDDLE_STAGE_N_EPOCH = 128
 # n_epoch for fine-tuning
-__C.TRAIN.LAST_STAGE_N_EPOCH = 24#256
+__C.TRAIN.LAST_STAGE_N_EPOCH = 256
 
 # Training network heads
 __C.TRAIN.HEADS_LAYERS = "heads"
@@ -246,15 +246,15 @@ __C.TRAIN.ALL_LAYERS = "all"
 # Validation stats are also calculated at each epoch end and they
 # might take a while, so don't set this too small to avoid spending
 # a lot of time on validation stats.
-__C.TRAIN.STEPS_PER_EPOCH = 2#1000
+__C.TRAIN.STEPS_PER_EPOCH = 500 #1000
 
 # Number of validation steps to run at the end of every training epoch.
 # A bigger number improves accuracy of validation stats, but slows
 # down the training.
-__C.TRAIN.VALIDATION_STEPS = 1#50
+__C.TRAIN.VALIDATION_STEPS = 50
 
 # todo: early stop
-__C.TRAIN.EARLY_STOP = 10#100
+__C.TRAIN.EARLY_STOP = 100
 __C.TRAIN.DEBUG_STEP = 2
 
 # ROIs kept after non-maximum suppression
