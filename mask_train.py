@@ -257,9 +257,6 @@ class MaskTrain(object):
         batch_index = 0
         image_index = -1
         image_ids = np.copy(data.image_ids_list)
-        print("data:", data)
-        print("data.image_ids_list:", data.image_ids_list)
-        print("image_ids:", image_ids)
 
         error_count = 0
         no_augmentation_sources = no_augmentation_sources or []
