@@ -49,6 +49,7 @@ class MaskTest(object):
         self.mask_model = MaskRCNN(train_flag=False)
         # 加载权重模型
         self.mask_model.load_weights(cfg.TEST.COCO_MODEL_PATH, by_name=True)
+        self.mask_model.summary()
 
         pass
 
@@ -56,7 +57,7 @@ class MaskTest(object):
         with open(self.class_names_path, "r") as file:
             class_names_info = file.readlines()
             class_names_list = [class_names.strip() for class_names in class_names_info]
-            print("class_names_list:",class_names_list)
+            print("class_names_list:", class_names_list)
             return class_names_list
         pass
 
@@ -89,49 +90,50 @@ class MaskTest(object):
             image_info = cv2.imread(test_image_path)
             print("read img:", test_image_path)
             h, w, _ = image_info.shape
+            print(image_info.shape)
 
             # Run detection
             results_info_list = self.mask_model.detect([image_info])
             print("results: {}".format(results_info_list))
 
-            rois = results_info_list[0]['rois']
-            class_ids = results_info_list[0]['class_ids']
-            scores = results_info_list[0]['scores']
-            masks = results_info_list[0]['masks']
-            mask_cnt = masks.shape[-1]
-            CLASS_NAME = self.class_names_list[1:]
-
-            result = []
-            for i in range(mask_cnt):
-                confidence = np.float(scores[i])
-                _rois = rois[i].tolist()
-                # 画线
-                cv2.polylines(image_info, [_rois], True, (255, 0, 0), 3)
-
-                class_points = {
-                    "label": CLASS_NAME[class_ids[i] - 1],
-                    "scores": confidence,
-                    "points": _rois,
-                    "group_id": " ",
-                    "shape_type": "polygon",
-                    "flags": {}
-                }
-                result.append(class_points)
-                prediction = {"version": "3.16.7",
-                              "flags": {},
-                              'shapes': result,
-                              "imagePath": test_image_name,
-                              "imageData": self.nparray2base64(image_info),
-                              "imageHeight": h,
-                              "imageWidth": w
-                              }
-
-            image_path = os.path.join(self.debug_image_path + test_image_name)
-            cv2.imwrite(image_path, image_info)
-
-            prediction_json_path = os.path.join(self.prediction_path + test_image_name[:-4] + ".json")
-            with open(prediction_json_path, "w", encoding='utf-8') as g:
-                json.dump(prediction, g, indent=2, sort_keys=True, ensure_ascii=False)
+            # rois = results_info_list[0]['rois']
+            # class_ids = results_info_list[0]['class_ids']
+            # scores = results_info_list[0]['scores']
+            # masks = results_info_list[0]['masks']
+            # mask_cnt = masks.shape[-1]
+            # CLASS_NAME = self.class_names_list[1:]
+            #
+            # result = []
+            # for i in range(mask_cnt):
+            #     confidence = np.float(scores[i])
+            #     _rois = rois[i].tolist()
+            #     # 画线
+            #     cv2.polylines(image_info, [_rois], True, (255, 0, 0), 3)
+            #
+            #     class_points = {
+            #         "label": CLASS_NAME[class_ids[i] - 1],
+            #         "scores": confidence,
+            #         "points": _rois,
+            #         "group_id": " ",
+            #         "shape_type": "polygon",
+            #         "flags": {}
+            #     }
+            #     result.append(class_points)
+            #     prediction = {"version": "3.16.7",
+            #                   "flags": {},
+            #                   'shapes': result,
+            #                   "imagePath": test_image_name,
+            #                   "imageData": self.nparray2base64(image_info),
+            #                   "imageHeight": h,
+            #                   "imageWidth": w
+            #                   }
+            #
+            # image_path = os.path.join(self.debug_image_path + test_image_name)
+            # cv2.imwrite(image_path, image_info)
+            #
+            # prediction_json_path = os.path.join(self.prediction_path + test_image_name[:-4] + ".json")
+            # with open(prediction_json_path, "w", encoding='utf-8') as g:
+            #     json.dump(prediction, g, indent=2, sort_keys=True, ensure_ascii=False)
         pass
 
     @staticmethod
