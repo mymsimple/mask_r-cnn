@@ -109,7 +109,7 @@ __C.COMMON.CLASS_NUM = 1 + 6
 __C.COMMON.IMAGE_META_SIZE = 1 + 3 + 3 + 4 + 1 + __C.COMMON.CLASS_NUM
 
 # backbone 支持 resNet50 和 resNet101
-__C.COMMON.BACKBONE = "resNet101"
+__C.COMMON.BACKBONE = "resNet50"
 
 # The strides of each layer of the FPN Pyramid. These values
 # are based on a resNet101 backbone.
@@ -246,12 +246,12 @@ __C.TRAIN.ALL_LAYERS = "all"
 # Validation stats are also calculated at each epoch end and they
 # might take a while, so don't set this too small to avoid spending
 # a lot of time on validation stats.
-__C.TRAIN.STEPS_PER_EPOCH = 100 #1000
+__C.TRAIN.STEPS_PER_EPOCH = 80 #1000
 
 # Number of validation steps to run at the end of every training epoch.
 # A bigger number improves accuracy of validation stats, but slows
 # down the training.
-__C.TRAIN.VALIDATION_STEPS = 50
+__C.TRAIN.VALIDATION_STEPS = 28#50
 
 # todo: early stop
 __C.TRAIN.EARLY_STOP = 100
@@ -302,7 +302,7 @@ __C.TRAIN.ANCHORS_PER_IMAGE = 256
 __C.TEST = edict()
 
 # model 文件路径
-__C.TEST.COCO_MODEL_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "models/mask_rcnn_coco.h5")
+__C.TEST.COCO_MODEL_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "models/mask_rcnn_coco_0060.h5")
 __C.TEST.SAVE_MODEL_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "models/")
 __C.TEST.TEST_INFO_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "infos/test.txt")
 

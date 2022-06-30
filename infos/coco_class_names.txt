@@ -1,7 +1,7 @@
 BG
-0
-1
-2
-3
-4
-5
+Text
+Title
+Seal
+Handwriting
+Table
+Figure

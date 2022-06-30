@@ -24,16 +24,18 @@ def revise_shapes(obj):
 
         # 获取每个shape
         # 更改标签
-        # if shape['label'] == '1':
-        #     shape['label'] = 'L_4'
-        # if shape['label'] == '2':
-        #     shape['label'] = 'L_3'
-        # if shape['label'] == '3':
-        #     shape['label'] = 'L_2'
-        # if shape['label'] == '4':
-        #     shape['label'] = 'L_1'
-        # if shape['label'] == '5':
-        #     shape['label'] = 'WZ'
+        if shape['label'] == '0':
+            shape['label'] = 'Text'
+        if shape['label'] == '1':
+            shape['label'] = 'Title'
+        if shape['label'] == '2':
+            shape['label'] = 'Seal'
+        if shape['label'] == '3':
+            shape['label'] = 'Handwriting'
+        if shape['label'] == '4':
+            shape['label'] = 'Table'
+        if shape['label'] == '5':
+            shape['label'] = 'Figure'
 
         # 更改shape_type
         shape['shape_type'] = 'polygon'
