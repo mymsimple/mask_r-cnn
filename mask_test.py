@@ -88,9 +88,9 @@ class MaskTest(object):
             results_info_list = self.mask_model.detect([image_info])
             print("过滤后results: {}".format(results_info_list))
 
-            prediction_json_path = os.path.join(self.prediction_path + test_image_name[:-4] + ".json")
-            with open(prediction_json_path, "w", encoding='utf-8') as g:
-                json.dump(results_info_list, g, indent=2, sort_keys=True, ensure_ascii=False)
+            # prediction_json_path = os.path.join(self.prediction_path + test_image_name[:-4] + ".json")
+            # with open(prediction_json_path, "w", encoding='utf-8') as g:
+            #     json.dump(results_info_list, g, indent=2, sort_keys=True, ensure_ascii=False)
 
             # Visualize results
             result_info = results_info_list[0]
