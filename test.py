@@ -96,10 +96,6 @@ class MaskTest(object):
             results_info_list = self.mask_model.detect([image_info])
             print("results: {}".format(results_info_list))
 
-            prediction_json_path = os.path.join(self.prediction_path + test_image_name[:-4] + ".json")
-            with open(prediction_json_path, "w", encoding='utf-8') as g:
-                json.dump(prediction, g, indent=2, sort_keys=True, ensure_ascii=False)
-
             rois = results_info_list[0]['rois']
             class_ids = results_info_list[0]['class_ids']
             scores = results_info_list[0]['scores']
@@ -111,13 +107,15 @@ class MaskTest(object):
             for i in range(mask_cnt):
                 confidence = np.float(scores[i])
                 _rois = rois[i].tolist()
+                box = self.cut_rectangle(_rois)
                 # 画线
-                # cv2.polylines(image_info, [_rois], True, (255, 0, 0), 3)
+                cv2.polylines(image_info, [box], True, (255, 0, 0), 3)
 
                 class_points = {
                     "label": CLASS_NAME[class_ids[i] - 1],
                     "scores": confidence,
-                    "points": _rois,
+                    "rois": _rois,
+                    "points": box,
                     "group_id": " ",
                     "shape_type": "polygon",
                     "flags": {}
@@ -151,14 +149,12 @@ class MaskTest(object):
         return str(base64.b64encode(d), 'utf-8')
 
 
-    def cut_rectangle(self):
+    def cut_rectangle(self, box):
         '''
         抠出外接矩形
         :return:
         '''
-        results_info_list, image_info, test_image_name = self.do_test(self.test_image_file_path)
 
-        box = results_info_list[0]['rois']
         # mask = results_info_list[0]['masks']
         ymin = box[0][0]
         xmin = box[0][1]
