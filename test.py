@@ -118,7 +118,7 @@ class MaskTest(object):
                     "label": CLASS_NAME[class_ids[i] - 1],
                     "scores": confidence,
                     "rois": _rois,
-                    "points": box,
+                    "points": box.tolist(),
                     "group_id": " ",
                     "shape_type": "polygon",
                     "flags": {}
