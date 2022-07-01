@@ -49,7 +49,6 @@ class MaskTest(object):
         self.mask_model = MaskRCNN(train_flag=False)
         # 加载权重模型
         self.mask_model.load_weights(cfg.TEST.COCO_MODEL_PATH, by_name=True)
-        self.mask_model.summary()
 
         pass
 
