@@ -89,8 +89,8 @@ class MaskTest(object):
             print("过滤后results: {}".format(results_info_list))
 
             # Visualize results
-            result_info = results_info_list[0]
-            self.deal_instances(image_info, self.class_names_list, result_info)
+            # result_info = results_info_list[0]
+            # self.deal_instances(image_info, self.class_names_list, result_info)
 
             height, width = image_info.shape[:2]
 
@@ -228,28 +228,28 @@ class MaskTest(object):
             ax.text(x1, y1 - 20, caption, color='r', size=20, backgroundcolor="w")
 
             # Mask
-            # mask = masks[:, :, i]
-            # if show_mask:
-            #     masked_image = self.apply_mask(masked_image, mask, color)
-            #     pass
-            #
-            # # Mask Polygon
-            # # Pad to ensure proper polygons for masks that touch image edges.
-            # padded_mask = np.zeros((mask.shape[0] + 2, mask.shape[1] + 2), dtype=np.uint8)
-            # padded_mask[1:-1, 1:-1] = mask
-            # contours = find_contours(padded_mask, 0.5)
-            #
-            # for flip in contours:
-            #     # Subtract the padding and flip (y, x) to (x, y)
-            #     flip = np.fliplr(flip) - 1
-            #     p = Polygon(flip, facecolor="none", edgecolor=color)
-            #     ax.add_patch(p)
-            # pass
+            mask = masks[:, :, i]
+            if show_mask:
+                masked_image = self.apply_mask(masked_image, mask, color)
+                pass
 
-        # masked_image_uint8 = masked_image.astype(np.uint8)
+            # Mask Polygon
+            # Pad to ensure proper polygons for masks that touch image edges.
+            padded_mask = np.zeros((mask.shape[0] + 2, mask.shape[1] + 2), dtype=np.uint8)
+            padded_mask[1:-1, 1:-1] = mask
+            contours = find_contours(padded_mask, 0.5)
+
+            for flip in contours:
+                # Subtract the padding and flip (y, x) to (x, y)
+                flip = np.fliplr(flip) - 1
+                p = Polygon(flip, facecolor="none", edgecolor=color)
+                ax.add_patch(p)
+            pass
+
+        masked_image_uint8 = masked_image.astype(np.uint8)
 
         # 将 masked_image_uint8 放入到 plt 中
-        # ax.imshow(masked_image_uint8)
+        ax.imshow(masked_image_uint8)
         pass
 
 
