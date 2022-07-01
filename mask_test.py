@@ -10,6 +10,7 @@ from datetime import datetime
 import os
 import colorsys
 import cv2
+import json
 import skimage.io
 import numpy as np
 from matplotlib import patches
@@ -36,6 +37,7 @@ class MaskTest(object):
         # 测试图像的输入 和 输出 路径
         self.test_image_file_path = cfg.TEST.TEST_IMAGE_FILE_PATH
         self.output_image_path = cfg.TEST.OUTPUT_IMAGE_PATH
+        self.prediction_path = cfg.TEST.PREDICTION_PATH
 
         # 加载网络模型
         self.mask_model = MaskRCNN(train_flag=False)
@@ -81,10 +83,14 @@ class MaskTest(object):
             # 读取图像
             # image_info = skimage.io.imread(test_image_path)
             image_info = cv2.imread(test_image_path)
-            print("read img:",test_image_path)
+            print("read img:", test_image_path)
             # Run detection
             results_info_list = self.mask_model.detect([image_info])
             print("过滤后results: {}".format(results_info_list))
+
+            prediction_json_path = os.path.join(self.prediction_path + test_image_name[:-4] + ".json")
+            with open(prediction_json_path, "w", encoding='utf-8') as g:
+                json.dump(results_info_list, g, indent=2, sort_keys=True, ensure_ascii=False)
 
             # Visualize results
             result_info = results_info_list[0]
@@ -226,28 +232,28 @@ class MaskTest(object):
             ax.text(x1, y1 - 20, caption, color='r', size=20, backgroundcolor="w")
 
             # Mask
-            mask = masks[:, :, i]
-            if show_mask:
-                masked_image = self.apply_mask(masked_image, mask, color)
-                pass
+            # mask = masks[:, :, i]
+            # if show_mask:
+            #     masked_image = self.apply_mask(masked_image, mask, color)
+            #     pass
+            #
+            # # Mask Polygon
+            # # Pad to ensure proper polygons for masks that touch image edges.
+            # padded_mask = np.zeros((mask.shape[0] + 2, mask.shape[1] + 2), dtype=np.uint8)
+            # padded_mask[1:-1, 1:-1] = mask
+            # contours = find_contours(padded_mask, 0.5)
+            #
+            # for flip in contours:
+            #     # Subtract the padding and flip (y, x) to (x, y)
+            #     flip = np.fliplr(flip) - 1
+            #     p = Polygon(flip, facecolor="none", edgecolor=color)
+            #     ax.add_patch(p)
+            # pass
 
-            # Mask Polygon
-            # Pad to ensure proper polygons for masks that touch image edges.
-            padded_mask = np.zeros((mask.shape[0] + 2, mask.shape[1] + 2), dtype=np.uint8)
-            padded_mask[1:-1, 1:-1] = mask
-            contours = find_contours(padded_mask, 0.5)
-
-            for flip in contours:
-                # Subtract the padding and flip (y, x) to (x, y)
-                flip = np.fliplr(flip) - 1
-                p = Polygon(flip, facecolor="none", edgecolor=color)
-                ax.add_patch(p)
-            pass
-
-        masked_image_uint8 = masked_image.astype(np.uint8)
+        # masked_image_uint8 = masked_image.astype(np.uint8)
 
         # 将 masked_image_uint8 放入到 plt 中
-        ax.imshow(masked_image_uint8)
+        # ax.imshow(masked_image_uint8)
         pass
 
 
