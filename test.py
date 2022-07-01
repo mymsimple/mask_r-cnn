@@ -107,11 +107,12 @@ class MaskTest(object):
                 confidence = np.float(scores[i])
                 _rois = rois[i].tolist()
                 box = self.cut_rectangle(_rois)
+                box = np.int0(box)
                 # 画线
                 cv2.polylines(image_info, [box], True, (255, 0, 0), 3)
                 # save images
                 output_image_path = os.path.join(self.output_image_path, test_image_name)
-                plt.savefig(output_image_path)
+                cv2.imwrite(output_image_path, image_info)
 
                 class_points = {
                     "label": CLASS_NAME[class_ids[i] - 1],
