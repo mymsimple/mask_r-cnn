@@ -188,7 +188,6 @@ __C.TRAIN.COCO_TRAIN_IMAGE_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "data/l
 __C.TRAIN.COCO_VAL_ANN_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "infos/val_data.json")
 __C.TRAIN.COCO_VAL_IMAGE_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "data/labelme")
 
-#__C.TRAIN.MODEL_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "models/mask_rcnn_coco.h5")
 __C.TRAIN.MODEL_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "models/mask_rcnn_coco.h5")
 
 #TODO 做成动态
@@ -302,7 +301,7 @@ __C.TRAIN.ANCHORS_PER_IMAGE = 256
 __C.TEST = edict()
 
 # model 文件路径
-__C.TEST.COCO_MODEL_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "models/mask_rcnn_coco_0060.h5")
+__C.TEST.COCO_MODEL_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "models/mask_rcnn_coco_0050.h5")
 __C.TEST.SAVE_MODEL_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "models/")
 __C.TEST.TEST_INFO_PATH = os.path.join(__C.COMMON.RELATIVE_PATH, "infos/val_data.txt")
 

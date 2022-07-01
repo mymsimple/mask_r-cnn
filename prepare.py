@@ -55,7 +55,7 @@ class Prepare(object):
 
         # 数据的百分比
         # 测试集比例
-        self.test_percent = 0.0
+        self.test_percent = 0.1
         # 验证集比例
         self.val_percent = 0.1
 
@@ -276,7 +276,7 @@ class Prepare(object):
             annotation = {}
 
             label = shape_info["label"]
-            print("label:",label)
+            print("label:", label)
             if label in self.class_name_list:
                 # label = "table"
                 points = shape_info["points"]
