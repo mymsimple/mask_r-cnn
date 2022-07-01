@@ -108,12 +108,12 @@ class MaskTest(object):
                 _rois = rois[i].tolist()
                 box = self.cut_rectangle(_rois)
                 box = np.int0(box)
-                # 画线
-                cv2.polylines(image_info, [box], True, (255, 0, 0), 2)
-                # 设置字体
-                font = cv2.FONT_HERSHEY_SIMPLEX
-                # 参数含义： 要添加的文字，位置，字体，大小，颜色，粗细
-                cv2.putText(image_info, 'openCV', (box[0][0], box[0][1]-20), font, 4, (255, 255, 255), 2)
+                # # 画线
+                # cv2.polylines(image_info, [box], True, (255, 0, 0), 2)
+                # # 设置字体
+                # font = cv2.FONT_HERSHEY_SIMPLEX
+                # # 参数含义： 要添加的文字，位置，字体，大小，颜色，粗细
+                # cv2.putText(image_info, 'openCV', (box[0][0], box[0][1]-20), font, 4, (255, 255, 255), 2)
 
                 # save images
                 output_image_path = os.path.join(self.output_image_path, test_image_name)
@@ -137,9 +137,6 @@ class MaskTest(object):
                               "imageHeight": h,
                               "imageWidth": w
                               }
-
-            # image_path = os.path.join(self.debug_image_path + test_image_name)
-            # cv2.imwrite(image_path, image_info)
 
             prediction_json_path = os.path.join(self.prediction_path + test_image_name[:-4] + ".json")
             with open(prediction_json_path, "w", encoding='utf-8') as g:

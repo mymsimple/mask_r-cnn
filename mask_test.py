@@ -89,8 +89,8 @@ class MaskTest(object):
             print("过滤后results: {}".format(results_info_list))
 
             # Visualize results
-            # result_info = results_info_list[0]
-            # self.deal_instances(image_info, self.class_names_list, result_info)
+            result_info = results_info_list[0]
+            self.deal_instances(image_info, self.class_names_list, result_info)
 
             height, width = image_info.shape[:2]
 
