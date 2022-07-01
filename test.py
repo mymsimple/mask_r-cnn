@@ -110,6 +110,9 @@ class MaskTest(object):
                 box = self.cut_rectangle(_rois)
                 # 画线
                 cv2.polylines(image_info, [box], True, (255, 0, 0), 3)
+                # save images
+                output_image_path = os.path.join(self.output_image_path, test_image_name)
+                plt.savefig(output_image_path)
 
                 class_points = {
                     "label": CLASS_NAME[class_ids[i] - 1],
