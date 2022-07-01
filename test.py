@@ -158,10 +158,10 @@ class MaskTest(object):
         '''
 
         # mask = results_info_list[0]['masks']
-        ymin = box[0][0]
-        xmin = box[0][1]
-        ymax = box[0][2]
-        xmax = box[0][3]
+        ymin = box[0]
+        xmin = box[1]
+        ymax = box[2]
+        xmax = box[3]
         # w = xmax - xmin
         # h = ymax - ymin
         # cut_img = image_info[ymin:ymin+h, xmin:xmin+w]
