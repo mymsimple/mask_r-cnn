@@ -69,9 +69,11 @@ def revise_shapes(obj):
 
 if __name__ == '__main__':
     # 待修改的json文件目录
-    json_dir = '/Users/yanmeima/data/detection/labelme'
+    # json_dir = '/Users/yanmeima/data/detection/labelme'
+    json_dir = '/home/mayanmei/ocr_project/data/train_data'
     # 修改后文件的保存路径
-    new_dir = '/Users/yanmeima/data/detection/labelme_4points'
+    # new_dir = '/Users/yanmeima/data/detection/labelme_4points'
+    new_dir = '/home/mayanmei/ocr_project/data/labelme_4points'
     # 如果没有则新建一个
     if not os.path.exists(new_dir):
         os.makedirs(new_dir)
