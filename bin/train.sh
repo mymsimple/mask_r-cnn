@@ -1,11 +1,11 @@
 echo "开始训练"
 
 Date=$(date +%Y%m%d%H%M)
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES=0
 
 log_dir="logs"
 
-GPU=1
+GPU=0
 
 if [ "$1" != "" ]; then
     echo "选择GPU$1"

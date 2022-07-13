@@ -225,11 +225,11 @@ __C.TRAIN.LEARNING_MOMENTUM = 0.9
 __C.TRAIN.GRADIENT_CLIP_NORM = 5.0
 
 # n_epoch for rough train
-__C.TRAIN.FIRST_STAGE_N_EPOCH = 8#32
+__C.TRAIN.FIRST_STAGE_N_EPOCH = 6#32
 # n_epoch for convergence loss
-__C.TRAIN.MIDDLE_STAGE_N_EPOCH = 32#128
+__C.TRAIN.MIDDLE_STAGE_N_EPOCH = 24#128
 # n_epoch for fine-tuning
-__C.TRAIN.LAST_STAGE_N_EPOCH = 64#256
+__C.TRAIN.LAST_STAGE_N_EPOCH = 48#256
 
 # Training network heads
 __C.TRAIN.HEADS_LAYERS = "heads"
@@ -245,12 +245,12 @@ __C.TRAIN.ALL_LAYERS = "all"
 # Validation stats are also calculated at each epoch end and they
 # might take a while, so don't set this too small to avoid spending
 # a lot of time on validation stats.
-__C.TRAIN.STEPS_PER_EPOCH = 80 #1000
+__C.TRAIN.STEPS_PER_EPOCH = 50 #1000
 
 # Number of validation steps to run at the end of every training epoch.
 # A bigger number improves accuracy of validation stats, but slows
 # down the training.
-__C.TRAIN.VALIDATION_STEPS = 28#50
+__C.TRAIN.VALIDATION_STEPS = 25#50
 
 # todo: early stop
 __C.TRAIN.EARLY_STOP = 100
